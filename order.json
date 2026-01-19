@@ -1,0 +1,13 @@
+{
+  "orders": [
+    {
+      "id": "025c49a3-4356-4ee1-8498-25aaa1056629",
+      "name": "MR.X MR.X",
+      "phone": "+212631056471",
+      "address": "Angle Boulevard Sidi Abderrahmane",
+      "productId": "c36d336e-8dbf-4e4b-99bf-15fe9f1458b5",
+      "quantity": 1,
+      "createdAt": "2026-01-16T18:29:32.532Z"
+    }
+  ]
+}

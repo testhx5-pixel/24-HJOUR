@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style/checkout.css">
+<link rel="icon" id="favicon">
+
+    <title>Checkout</title>
+
+</head>
+
+<body>
+
+  <div class="carde" id="card">
+
+    <div class="row">
+                <div class="col-md-8 cart">
+
+  <div class="titleee">
+                        <div class="row">
+                            <div class="col ko"><h4><b>Shopping Products</b></h4></div>
+                            <div class="col align-self-center text-right text-muted"> items</div>
+                        </div>
+                    </div>
+  <div id="checkoutTable" >
+
+    <div class="tbody"></div>
+
+   
+                  </div>
+                    <div class="back-to-shop"><a href="index.html#shoping">&leftarrow;<span class="text-muted">Back to shop</span></a></div>
+
+    </div>
+  
+                <div class="col-md-4 summary">
+                    <div><h5><b>Summary</b></h5></div>
+<hr>
+  <div class="row">
+                        <div class="col" style="padding-left:0;">ITEMS :</div>
+                        <div class="col text-right"></div>
+                    </div>
+  <form id="checkoutForm">
+                
+        <label>First-Last Name *</label>
+                        
+    <input type="text" id="name" placeholder="Your Name" required>
+                         <label>Phone numbre *</label>
+
+    <input type="tel" id="phone" placeholder="Phone Number" required>
+                  
+<label for="">City and Addres *</label>
+    <input id="address" placeholder="Address" required>
+        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                        <div class="col">TOTAL PRICE</div>
+                        <div class="col text-right"><b><span id="totalPrice">0</span> DH</b></div>
+                    </div>
+
+    <button type="submit" class="btnn">Confirm Purchase</button>
+  </form>
+
+
+
+
+
+  
+    </div>
+
+
+
+    </div>
+
+  </div>
+
+
+  <div id="message"></div>
+
+
+</body>
+<script src="js/ui.js"></script>
+<script src="/js/updateFavicon.js"></script>
+<script src="js/chkout.js"></script>
+</html>

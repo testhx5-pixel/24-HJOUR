@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button class="cart-btn">Add to Cart</button>
+<button class="checkout-btn">Checkout</button>
+
+<!-- Audio -->
+<audio id="click-sound" src="style/correct.mp3"></audio>
+
+<style>
+  button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button:active {
+  transform: scale(0.92);
+}
+
+/* Add to Cart Style */
+.cart-btn {
+  background: #222;
+  color: #fff;
+}
+
+/* Checkout Style */
+.checkout-btn {
+  background: #e60000;
+  color: #fff;
+}
+
+</style>
+<script>
+const sound = document.getElementById('click-sound');
+
+document.querySelectorAll(".cart-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    sound.currentTime = 0;
+    sound.play();
+
+    btn.style.transform = "scale(0.95)";
+    setTimeout(() => {
+      btn.style.transform = "scale(1)";
+    }, 100);
+  });
+});
+
+</script>
+
+</body>
+</html>

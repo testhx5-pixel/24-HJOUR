@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Add Product – Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" id="favicon">
+
+  <link rel="stylesheet" href="/style/admin.css">
+
+</head>
+
+<body>
+  <main>
+    <div class="topbar">
+      <div class="top-left">
+        <div class="logoContainer">
+
+        </div>
+        <h2> <span class="logo"></span></h2>
+      </div>
+
+      <div class="mobile-menu-btn" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars-staggered"></i>
+      </div>
+    </div>
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+      <div class="loggo">
+        <div class="logoContainer">
+
+        </div>
+        <span class="logo-text logo"></span>
+      </div>
+      <ul class="menu">
+        <a href="#home">
+          <li><i class="fa fa-home"></i><span>Home</span></li>
+        </a>
+        <a href="#orders">
+          <li><i class="prod fa-solid fa-box">
+              <p id="ordersCount"></p>
+            </i><span>Orders</span></li>
+        </a>
+
+        <a href="#products">
+          <li><i class="fa fa-list"></i><span>Products</span></li>
+        </a>
+        <a href="#settings">
+          <li><i class="fa fa-gear"></i><span>Settings</span></li>
+        </a>
+        <a href="/index.html">
+          <li>
+            <i class="fa-solid fa-store"></i>
+            <span>Store</span>
+
+          </li>
+        </a>
+        <a href>
+          <li><i class="fa-solid fa-circle-info"></i>
+            <span>Help</span>
+          </li>
+        </a>
+      </ul>
+    </div>
+
+    <!-- contt -->
+    <section id="home" class="active" aria-labelledby="homeLabel">
+
+      <div class="containeer">
+        <h1>Add Product</h1>
+
+        <form class="card" id="addForm" enctype="multipart/form-data">
+
+          <div class="group">
+            <div class="input-box">
+              <label>Product Name</label>
+
+              <input type="text" name="title" placeholder="Product Name" required>
+            </div>
+
+            <div class="input-box">
+              <label>Category</label>
+              <input type="text" name="type" placeholder="Category e.g. Sneaker Company">
+
+            </div>
+          </div>
+
+          <div class="input-box">
+            <div class="group">
+
+              <div class="input-box">
+
+                <label>Description 1</label>
+                <textarea name="description" class="description1" placeholder="Description" ></textarea>
+              </div>
+
+              <div class="input-box">
+
+                <label>Description 2</label>
+
+                <div class="toolar">
+                  <button type="button" onclick="exec('bold')">B</button>
+                  <button type="button" onclick="exec('italic')"><i>I</i></button>
+                  <button type="button" onclick="exec('underline')"><u>U</u></button>
+                  <button type="button" onclick="exec('insertUnorderedList')">• List</button>
+                  <button type="button" onclick="exec('insertOrderedList')">1.
+                    List</button>
+              
+                 
+
+                  <select onchange="setFontSize(this.value)">
+                    <option value>Font Size</option>
+                    <option value="12px">12</option>
+                    <option value="14px">14</option>
+                    <option value="16px">16</option>
+                    <option value="18px">18</option>
+                    <option value="20px">20</option>
+                    <option value="24px">24</option>
+                    <option value="28px">28</option>
+                    <option value="32px">32</option>
+                  </select>
+
+                  <select onchange="setHeading(this.value)">
+                    <option value>Heading</option>
+                    <option value="H1">H1</option>
+                    <option value="H2">H2</option>
+                    <option value="H3">H3</option>
+                    <option value="H4">H4</option>
+                    <option value="H5">H5</option>
+                    <option value="H6">H6</option>
+                  </select>
+                  <label >
+                  tx
+                  <input type="color" id="colorText" onchange="applyTextColor(this.value)" title="لون النص">
+
+                  </label>
+                  <label >
+bg 
+                  <input type="color" id="colorBg" onchange="applyBgColor(this.value)" title="خلفية">
+
+                  </label>
+                  <button type="button" onclick="removeColors()">Rm clr</button>
+                </div>
+                <div id="editor2" class="editor2" contenteditable="true">
+                </div>
+
+                <textarea name="description2" id="hiddenDesc2" style="display:none;"></textarea>
+
+              </div>
+
+            </div>
+        
+          </div>
+
+          <div class="group">
+
+            <div class="input-box">
+
+              <label>Add Category</label>
+              <input type="text" id="newCategory" placeholder="New category">
+              <button type="button" id="addCategoryBtn">Add Category</button>
+            </div>
+            <div class="input-box">
+
+              <label>Select Category</label>
+              <select class="cat5igoriy" name="typee" id="categorySelect">
+                <option  value>-- Select category --</option>
+              </select>
+
+  <button type="button" id="deleteCategoryBtn">Delete Category</button>
+
+            </div>
+
+          </div>
+
+          <div class="group">
+            <div class="input-box">
+              <label>Price</label>
+              <input type="number" name="price" placeholder="Price" required>
+
+            </div>
+
+            <div class="input-box">
+              <label>Discount Price</label>
+              <input type="number" name="discountPrice" placeholder="Discount Price (optional)">
+
+            </div>
+          </div>
+
+          <h1 style="font-size:22px;">Upload Images</h1>
+
+          <div class="images-grid">
+
+            <div class="img-box">
+              <h3>Image 1</h3>
+              <div class="preview" id="prev1">No Image</div>
+              <label class="select">Choose File
+                <input type="file" id="mg1" name="images" required>
+              </label>
+            </div>
+
+            <div class="img-box">
+              <h3>Image 2</h3>
+              <div class="preview" id="prev2">No Image</div>
+              <label class="select">Choose File
+                <input type="file" id="mg2" name="images">
+              </label>
+            </div>
+            <div class="img-box">
+              <h3>Image 3</h3>
+              <div class="preview" id="prev3">No Image</div>
+              <label class="select">Choose File
+                <input type="file" id="mg3" name="images">
+              </label>
+            </div>
+            <div class="img-box">
+              <h3>Image 4</h3>
+              <div class="preview" id="prev4">No Image</div>
+              <label class="select">Choose File
+                <input type="file" id="mg4" name="images">
+              </label>
+            </div>
+            <div class="img-box">
+              <h3>Image 5</h3>
+              <div class="preview" id="prev5">No Image</div>
+              <label class="select">Choose File
+                <input type="file" id="mg5" name="images">
+              </label>
+            </div>
+
+          </div>
+
+          <button class="submit-btn">Save</button>
+
+        </form>
+      </div>
+    </section>
+    <section id="products" aria-labelledby="aboutLabel">
+      <h1 class="h2-show">Products List</h1>
+
+      <div id="productsList">
+
+      </div>
+    </section>
+
+    <section id="orders" aria-labelledby="aboutLabel">
+
+      <div class="container">
+        <h2 class="title">Orders Overview</h2>
+
+        <div class="table-wrapper">
+
+          <table id="ordersTable" class="ttable-wrapper">
+            <thead>
+              <tr class="lopp">
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>User Name</th>
+                <th>Phone Numbre</th>
+                <th>Address</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="settings" aria-labelledby="servicesLabel">
+
+      <h1 class="h1-setting">SETTINGS</h1>
+
+      <div class="settinge">
+
+        <div class="card">
+
+          <form id="changeCredForm">
+            <h2>Change Credentials</h2>
+            <label>Entre Old UserName</label>
+            <input type="text" id="oldUsername" placeholder="Old Username" required>
+            <label>Entre Old Password</label>
+
+            <input type="password" id="oldPassword" placeholder="Old Password" required>
+            <label>Entre New UserName</label>
+
+            <input type="text" id="newUsername" placeholder="New Username">
+            <label>Entre New Password</label>
+
+            <input type="password" id="newPassword" placeholder="New Password">
+            <button type="submit" class="btn">Update</button>
+            <div id="msgg" class="message"></div>
+
+          </form>
+
+        </div>
+
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+
+        <div class="card">
+
+          <form id="uiSettingsForm">
+            <h2>Store Appearance</h2>
+
+            <label>Site Name</label>
+            <input type="text" name="siteName" id="siteName" placeholder="Site name">
+
+            <label>Header Text</label>
+            <input type="text" name="headerText" id="headerText" placeholder="Header text">
+
+            <label>Background Color</label>
+            <input type="color" id="backgroundColor" name="backgroundColor" value="#ffffff">
+
+            <label>Font Color</label>
+            <input type="color" id="fontColor" name="fontColor" value="#111827">
+
+            <label>Accent Color</label>
+            <input type="color" id="accentColor" name="accentColor" value="#dc2626">
+
+            <button type="submit" class="btn" style="margin-top:15px;">Save
+              Appearance</button>
+
+            <div id="uiMsg" class="message" style="margin-top:10px;"></div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h2>social Media</h2>
+          <form id="socialForm">
+            <label><i class="fa fa-solid fa-envelope"></i> Email :</label>
+            <input name="email" placeholder="Email link">
+            <label><i class="fa fa-solid fa-headset"></i> Support :</label>
+            <input name="support" placeholder="Support link">
+            <label><i class="fa fa-brands fa-whatsapp"></i> WhatsApp :</label>
+            <input name="whatsapp" placeholder="WhatsApp link">
+            <label><i class="fa fa-brands fa-instagram"></i> Instagram :</label>
+
+            <input name="instagram" placeholder="Instagram link">
+            <label><i class="fa fa-brands fa-facebook"></i> Facebook :</label>
+            <input name="facebook" placeholder="Facebook link">
+            <br>
+            <br>
+            <button class="btn">Save</button>
+          </form>
+
+        </div>
+        <div class="card">
+          <h2>Change Logo IMG / SVG</h2>
+          <div class="logo-sign-preview">
+            <img id="logoPreview" src>
+          </div>
+
+          <!-- <input type="text" id="logoUrlInput" placeholder="/logos/logo.png or SVG">
+
+
+
+    <h3>Upload Image</h3>
+     <label class="select">Choose IMG
+    <input type="file" id="fileInput">
+
+              </label>
+    <button type="button" onclick="uploadImage()">Upload</button> -->
+          <div class="upload-box">
+            <input type="text" id="logoUrlInput" placeholder="/logos/logo.png or SVG">
+
+            <h3>Upload Image</h3>
+              <div class="choi-uplod">
+
+            <label class="select">Choose IMG
+              <input type="file" id="fileInput">
+            </label>
+
+
+            <button type="button" class="btn" onclick="uploadImage()">Upload</button>
+              </div>
+
+          </div>
+
+          <!-- <h3>Use SVG</h3>
+    <textarea id="svgInput" rows="5" placeholder="<svg>...</svg>"></textarea>
+    <button type="button" onclick="setSvg()">Set SVG Logo</button>
+
+    <p id="msg"></p> -->
+
+          <div class="svg-box">
+            <h3>Use SVG</h3>
+
+            <textarea id="svgInput" rows="5" placeholder="<svg>...</svg>"></textarea>
+
+            <button type="button" class="btn" onclick="setSvg()">Set SVG Logo</button>
+
+            <p id="msg"></p>
+          </div>
+
+        </div>
+        <div class="card">
+          <h2>Control Banner</h2>
+          <form id="bannerForm">
+            <label>Entre Text Banner</label>
+            <input name="text" placeholder="Banner text">
+            <label>Choise Background Color</label>
+            <input name="background" type="color">
+            <label>Choise Font Size Color</label>
+            <input name="color" type="color">
+        
+  <h2> Text moving</h2>
+            <label class="switch">
+              <input type="checkbox" name="animate">
+  <span class="sliderrr"></span>
+
+            </label>
+            <br>
+            <br>
+            <label>Speed text Banner</label>
+            <input name="speed" type="number" min="5" max="30">
+            <h2>Enable Banner</h2>
+            <label class="switch"> 
+              <input type="checkbox" name="enabled">
+  <span class="sliderrr"></span>
+
+            </label>
+            <br>
+            <button class="btn">Save</button>
+          </form>
+
+        </div>
+        <div class="card">
+
+<!--        
+          <div class="banner-box">
+       
+
+            <div class="banner-item">
+              <label>Banner 1</label>
+              <label class="select">
+                Browser Imgae Banner 3
+                <input type="file" id="banner1Input">
+              </label>
+
+            </div>
+
+            <div class="banner-item">
+              <label>Banner 2</label>
+              <label class="select">
+                Browser Imgae Banner 3
+                <input type="file" id="banner2Input">
+              </label>
+
+            </div>
+
+            <div class="banner-item">
+              <label>Banner 3</label>
+              <label class="select">Browser Imgae Banner 3
+                <input type="file" id="banner3Input">
+              </label>
+            </div>
+          </div> -->
+          
+               <h2>Home Banners</h2>
+          <div class="banner-item">
+  <h3>Banner 1</h3>
+  <div class="imgy">
+  <img id="previewBanner1" class="banneradmin">
+
+  </div>
+  
+          <div class="butt-banner">
+
+  <label class="btn">
+    Upload image
+    <input type="file" id="banner1Input">
+  </label>
+
+  <button class="btn" onclick="deleteBanner('banner1')">Delete banner</button>
+</div>
+</div>
+
+<div class="banner-item">
+  <h3>Banner 2</h3>
+   <div class="imgy">
+  <img id="previewBanner2" class="banneradmin">
+
+  </div>
+          <div class="butt-banner">
+
+  <label class="btn">
+    Upload image
+    <input type="file" id="banner2Input">
+  </label>
+
+  <button class="btn" onclick="deleteBanner('banner2')">Delete banner</button>
+</div>
+</div>
+
+<div class="banner-item">
+  <h3>Banner 3</h3>
+    <div class="imgy">
+  <img id="previewBanner3" class="banneradmin">
+
+  </div>
+          <div class="butt-banner">
+
+  <label class="btn">
+    Upload image
+    <input type="file" id="banner3Input">
+  </label>
+
+  <button class="btn" onclick="deleteBanner('banner3')">Delete banner</button>
+</div>
+</div>
+
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- 
+  
+<div class="box">
+  <h3>Image → PNG ~2KB</h3>
+  <input type="file" id="upload" accept="image/*">
+  <button onclick="compress()">Compress & Download</button>
+  <p id="info"></p>
+  <canvas id="canvas" style="display:none"></canvas>
+</div>
+
+<script>
+function compress() {
+  const fileInput = document.getElementById("upload");
+  if (!fileInput.files.length) return alert("اختار صورة");
+
+  const img = new Image();
+  const reader = new FileReader();
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+  const info = document.getElementById("info");
+
+  reader.onload = e => img.src = e.target.result;
+  reader.readAsDataURL(fileInput.files[0]);
+
+  img.onload = () => {
+    let scale = 1.0;
+    const targetSize = 2048; // 2KB
+
+    function tryCompress() {
+      canvas.width = img.width * scale;
+      canvas.height = img.height * scale;
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      canvas.toBlob(blob => {
+        if (blob.size <= targetSize || scale < 0.05) {
+          info.innerText = `Final size: ${blob.size} bytes`;
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "image-2kb.png";
+          a.click();
+        } else {
+          scale -= 0.05; // نقص الحجم تدريجياً
+          tryCompress();
+        }
+      }, "image/png");
+    }
+
+    tryCompress();
+  };
+}
+</script>
+
+-->
+
+</body>
+<script src="/js/ui.js"></script>
+<script src="/js/admin-description.js"></script>
+<script src="/js/page-admin.js"></script>
+<script src="/js/orders.js"></script>
+<script src="/js/admin.js"></script>
+<script src="/js/updateFavicon.js"></script>
+
+</html>
